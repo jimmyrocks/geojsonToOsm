@@ -1,0 +1,24 @@
+{
+  "contributors": [{
+    "name": "Jim McAndrew",
+    "email": "james_mcandrew@partner.nps.gov"
+  }],
+  "dependencies": {
+    "xmljs_trans_js": "git+https://github.com/nationalparkservice/xmljs_trans_js.git#master"
+  },
+  "description": "Converts from GeoJSON to the OpenStreetMap format",
+  "keywords": ["OpenStreetMap", "GeoJSON", "XML"],
+  "author": "Jim McAndrew <james_mcandrew@partner.nps.gov>",
+  "license": "Public Domain",
+  "main": "index.js",
+  "name": "geojsontoosm",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/jimmyrocks/geojsontoosm"
+  },
+  "scripts": {
+    "start": "node index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.0.1"
+}
