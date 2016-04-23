@@ -9,19 +9,13 @@ var createNode = function (element, lat, lon) {
 };
 
 var addTags = function (element, tags) {
-  var ignoreTags = ['_primary_key', '_last_edit'];
-  var tranforms = {
-    'nps:unit_code': function (v) {
-      return v.toLowerCase();
-    }
-  };
   var clonedElement = JSON.parse(JSON.stringify(element));
   var newTags = [];
   for (var tag in tags) {
     if (ignoreTags.indexOf(tag) === -1) {
       newTags.push({
         'k': tag,
-        'v': tranforms[tag] ? tranforms[tag](tags[tag]) : tags[tag]
+        'v': tags[tag]
       });
     }
   }
@@ -29,12 +23,11 @@ var addTags = function (element, tags) {
   return clonedElement;
 };
 
-module.expors = function (id, type, changeset, version, tags, lat, lon) {
+module.exports = function (id, type, changeset, version, tags, lat, lon) {
+
   var newElement = {
     'id': id,
     'version': version.toString(),
-    'primaryKey': tags._primary_key,
-    'lastEdit': tags._last_edit,
     'changeset': changeset
   };
 
