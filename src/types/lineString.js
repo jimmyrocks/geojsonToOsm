@@ -1,11 +1,15 @@
-module.exports = function (tags, geometry, changeset, version) {
-  var way = createElement('way', changeset, version, tags);
+var createElement = require('../createElement');
+
+var lineString = function (tags, geometry, changeset, version) {
+  var way = createElement(lineString.elementType, changeset, version, tags);
+
   var returnObject = {
     node: [],
     way: [
       way
     ]
   };
+
   // Go through all the coordinates and create nodes for them
   returnObject.node = geometry.coordinates.map(function (coords) {
     // Create the node
@@ -20,3 +24,6 @@ module.exports = function (tags, geometry, changeset, version) {
 
   return returnObject;
 };
+
+lineString.elementType = 'way';
+module.exports = lineString;
