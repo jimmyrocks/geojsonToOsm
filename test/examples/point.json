@@ -1,0 +1,81 @@
+{
+  "type": "FeatureCollection",
+  "features": [{
+    "type": "Feature",
+    "properties": {
+      "name": "Washington"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.28906250000001,
+        46.31658418182218
+      ]
+    }
+  }, {
+    "type": "Feature",
+    "properties": {
+      "name": "California"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-117.0703125,
+        35.17380831799959
+      ]
+    }
+  }, {
+    "type": "Feature",
+    "properties": {
+      "name": "Texas"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-98.4375,
+        28.304380682962783
+      ]
+    }
+  }, {
+    "type": "Feature",
+    "properties": {
+      "name": "Florida"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-81.5625,
+        26.43122806450644
+      ]
+    }
+  }, {
+    "type": "Feature",
+    "properties": {
+      "name": "Maine"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-68.203125,
+        45.583289756006316
+      ]
+    }
+  }, {
+    "type": "Feature",
+    "properties": {
+      "name": "Michigan"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-84.72656249999999,
+        42.81152174509788
+      ]
+    }
+  }, {
+    "type": "Feature",
+    "properties": {
+      "name": "Minnesota"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-94.21875,
+        46.55886030311719
+      ]
+    }
+  }]
+}
