@@ -1,12 +1,8 @@
 var createElement = require('../createElement');
 
-var point = function (tags, geometry, osmId, changeset) {
-  var coords = geometry.coordinates;
-  var node = createElement(point.elementType, changeset, version, tags, coords[1], coords[0]);
-  return {
-    'node': [node]
-  };
+module.exports = function (id, changeset, version, geometry, tags, newIdGenerator) {
+    var node = createElement('node', id, changeset, version, geometry, tags, newIdGenerator);
+    return {
+      'node': [node]
+    };
 };
-
-point.elementType = 'node';
-module.exports = point;
