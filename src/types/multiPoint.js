@@ -1,4 +1,4 @@
-module.exports = function(tags, geometry, changeset, version) {
+var multiPoint = function(tags, geometry, changeset, version) {
   var coords = geometry.coordinates;
   var node = createElement('node', changeset, version, tags, coords[1], coords[0]);
   return {
@@ -6,4 +6,7 @@ module.exports = function(tags, geometry, changeset, version) {
       node
     ]
   };
-},
+};
+
+multiPoint.elementType = 'relation';
+module.exports = multiPoint;
