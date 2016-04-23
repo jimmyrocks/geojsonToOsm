@@ -12,31 +12,30 @@ var addTags = function (element, tags) {
   var clonedElement = JSON.parse(JSON.stringify(element));
   var newTags = [];
   for (var tag in tags) {
-    if (ignoreTags.indexOf(tag) === -1) {
-      newTags.push({
-        'k': tag,
-        'v': tags[tag]
-      });
-    }
+    newTags.push({
+      'k': tag,
+      'v': tags[tag]
+    });
   }
   clonedElement.tag = newTags;
   return clonedElement;
 };
 
-module.exports = function (id, type, changeset, version, tags, lat, lon) {
-
+module.exports = function (type, id, changeset, version, geometry, tags, newIdGenerator) {
   var newElement = {
-    'id': id,
-    'version': version.toString(),
+    'id': id === undefined ? newIdGenerator(type) : id,
+    'version': version === undefined ? '1' : version.toString(),
     'changeset': changeset
   };
 
   if (type === 'node') {
-    newElement = createNode(newElement, lat, lon);
-  } else {
+    var coords = geometry.coordinates;
+    newElement = createNode(newElement, coords[1], coords[0]);
+  } else if (type === 'way') {
     newElement.nd = [];
+  } else {
+    newElement.member = [];
   }
 
   return addTags(newElement, tags);
 };
-
