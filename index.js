@@ -1,5 +1,5 @@
 var jmTools = require('jm-tools');
-var osmTypes = jmTools.tools.requireDirectory('./src/types');
+var osmTypes = jmTools.requireDirectory('./src/types');
 
 var xmlTypes = {
   'osmChangeCreate': {},
@@ -8,30 +8,26 @@ var xmlTypes = {
   'osmXml': {}
 };
 
-var Generator = function (initial, incrementBy) {
+var IdGenerator = function (initial, incrementBy) {
   var types = {};
   return function (type) {
-    return types[type] === undefined ? initial : (types[type] + incrementBy);
+    types[type] = types[type] === undefined ? initial : (types[type] + incrementBy);
+    return types[type];
   };
 };
 
-var readFeatureCollection = function (featureCollection, osmIdField, generator) {
+var readFeatureCollection = function (featureCollection, osmIdField, versionField, changeset, idGenerator) {
   var geojsonFeatures = featureCollection && featureCollection.features || [];
   var osmFeatures = [];
   geojsonFeatures.forEach(function (feature) {
     if (feature.type === 'Feature') {
       if (feature.geometry && feature.geometry.type && osmTypes[feature.geometry.type]) {
-        var osmId = osmIdField ? parseInt(feature.properties[osmIdField], 10) : generator(osmTypes[feature.geometry.type].elementType);
-        if (isNaN(osmId)) {
-          throw new Error('Invalid OSM ID: ' + osmId + ' (' + feature.properties[osmIdField] + ')');
-        } else {
-          osmFeatures.push(osmTypes[feature.geometry.type](feature.properties, feature.geometry, osmId));
-        }
+        osmFeatures.push(osmTypes[feature.geometry.type](feature[osmIdField], changeset, feature[versionField], feature.geometry, feature.properties, idGenerator));
       } else {
         throw new Error('Invalid Geometry Type: ' + feature.geometry.type);
       }
     } else if (feature.type === 'FeatureCollection') {
-      osmFeatures.concat(readFeatureCollection(feature, osmIdField, generator));
+      osmFeatures.concat(readFeatureCollection(feature, osmIdField, changeset, idGenerator));
     } else {
       throw new Error('Invalid Feature Type: ' + feature.type);
     }
@@ -39,7 +35,8 @@ var readFeatureCollection = function (featureCollection, osmIdField, generator) 
   return osmFeatures;
 };
 
-module.exports = function (xmlType, changeset, geojson, osmIdField) {
-  var generator = new Generator(-1, -1);
-  return readFeatureCollection(geojson, osmIdField, generator);
+module.exports = function (xmlType, changeset, geojson, osmIdField, versionField) {
+  var idGenerator = new IdGenerator(-1, -1);
+  var osmJson = readFeatureCollection(geojson, osmIdField, versionField, changeset, idGenerator);
+  return osmJson;
 };
