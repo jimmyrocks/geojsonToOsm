@@ -4,7 +4,10 @@
     "email": "james_mcandrew@partner.nps.gov"
   }],
   "dependencies": {
-    "xmljs_trans_js": "git+https://github.com/nationalparkservice/xmljs_trans_js.git#master"
+    "js2xmlparser": "1.0.0"
+  },
+  "devDependencies": {
+    "jm-tools": "git+https://github.com/jimmyrocks/jm-tools#master"
   },
   "description": "Converts from GeoJSON to the OpenStreetMap format",
   "keywords": ["OpenStreetMap", "GeoJSON", "XML"],
@@ -17,8 +20,8 @@
     "url": "http://github.com/jimmyrocks/geojsontoosm"
   },
   "scripts": {
-    "start": "node index",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "test": "node ./tests/index.js"
   },
   "version": "0.0.1"
 }
