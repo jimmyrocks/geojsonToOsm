@@ -1,5 +1,5 @@
 var createElement = require('../createElement');
-var LineString = require('./LineString');
+var lineString = require('./lineString');
 
 module.exports = function (id, changeset, version, geometry, tags, newIdGenerator) {
   var relation = createElement('relation', id, changeset, version, geometry, tags, newIdGenerator);
@@ -14,7 +14,7 @@ module.exports = function (id, changeset, version, geometry, tags, newIdGenerato
 
   // Go through all the coordinates and create nodes for them
   returnObject.way = geometry.coordinates.map(function (subGeometry) {
-    var wayObject = LineString(undefined, changeset, undefined, {
+    var wayObject = lineString(undefined, changeset, undefined, {
       coordinates: subGeometry
     }, undefined, newIdGenerator);
 
