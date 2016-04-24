@@ -17,11 +17,14 @@ var files = {
   },
   'multiline': {
     'json': './test/examples/multiline.json'
+  },
+  'multiPolygon': {
+    'json': './test/examples/multiPolygon.json'
   }
 };
 
 var xmlType = 'osmChangeCreate';
-var geometries = JSON.parse(fs.readFileSync(files.multiline.json));
+var geometries = JSON.parse(fs.readFileSync(files.multiPolygon.json));
 var changeset = 1;
 osmIdField = undefined;
 versionField = 1;
