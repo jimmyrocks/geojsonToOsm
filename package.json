@@ -4,20 +4,17 @@
     "email": "james_mcandrew@partner.nps.gov"
   }],
   "dependencies": {
-    "js2xmlparser": "1.0.0"
-  },
-  "devDependencies": {
-    "jm-tools": "git+https://github.com/jimmyrocks/jm-tools#master"
+    "xmljs_trans_js": "git+https://github.com/jimmyrocks/xmljs_trans_js#master"
   },
   "description": "Converts from GeoJSON to the OpenStreetMap format",
   "keywords": ["OpenStreetMap", "GeoJSON", "XML"],
   "author": "Jim McAndrew <james_mcandrew@partner.nps.gov>",
   "license": "Public Domain",
   "main": "index.js",
-  "name": "geojsontoosm",
+  "name": "geojsonToOsm",
   "repository": {
     "type": "git",
-    "url": "http://github.com/jimmyrocks/geojsontoosm"
+    "url": "http://github.com/jimmyrocks/geojsonToOsm"
   },
   "scripts": {
     "start": "node index.js",
