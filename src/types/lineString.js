@@ -14,7 +14,10 @@ module.exports = function (id, changeset, version, geometry, tags, newIdGenerato
   returnObject.node = geometry.coordinates.map(function (coords) {
     // Create the node
     // TODO: When updating, these nodes may need to be pulled from the interface (think about this for later!)
-    var node = createElement('node', undefined, changeset, undefined, geometry, undefined, newIdGenerator);
+    console.log(coords);
+    var node = createElement('node', undefined, changeset, undefined, {
+      'coordinates': coords
+    }, undefined, newIdGenerator);
     // Add a reference to it
     returnObject.way[0].nd.push({
       'ref': node.id
