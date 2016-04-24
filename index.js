@@ -1,5 +1,11 @@
-var jmTools = require('jm-tools');
-var osmTypes = jmTools.requireDirectory('./src/types');
+var osmTypes = {
+  'Point': require('./src/types/point'),
+  'LineString': require('./src/types/lineString'),
+  'Polygon': require('./src/types/polygon'),
+  'MultiPoint': require('./src/types/multiPoint'),
+  'MultiLineString': require('./src/types/multiLineString'),
+  'MultiPolygon': require('./src/types/multiPolygon')
+};
 
 var xmlTypes = {
   'osmChangeCreate': {},
