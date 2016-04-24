@@ -1,26 +1,40 @@
 var createElement = require('../createElement');
+var lineString = require('./lineString');
 
 module.exports = function (id, changeset, version, geometry, tags, newIdGenerator) {
-  var way = createElement('way', id, changeset, version, geometry, tags, newIdGenerator);
+  var relation = createElement('relation', id, changeset, version, geometry, tags, newIdGenerator);
 
   var returnObject = {
     node: [],
-    way: [
-      way
+    way: [],
+    relation: [
+      relation
     ]
   };
 
   // Go through all the coordinates and create nodes for them
-  returnObject.node = geometry.coordinates.map(function (coords) {
-    // Create the node
-    // TODO: When updating, these nodes may need to be pulled from the interface (think about this for later!)
-    var node = createElement('node', undefined, changeset, undefined, geometry, undefined, newIdGenerator);
-    // Add a reference to it
-    returnObject.way[0].nd.push({
-      'ref': node.id
+  returnObject.way = geometry.coordinates.map(function (polygonGroup) {
+    var ways = [];
+    polygonGroup.forEach(function (polygonGeometry) {
+      // For Polygons with multiple rings, the first must be the exterior ring and any others must be interior rings or holes.
+      // http://geojson.org/geojson-spec.html#polygon
+      var outerInner = ways.length > 0 ? 'inner' : 'outer';
+      var wayObject = lineString(undefined, changeset, undefined, {
+        coordinates: polygonGeometry
+      }, undefined, newIdGenerator);
+
+      returnObject.relation[0].member.push({
+        'type': 'way',
+        'ref': wayObject.way[0].id,
+        'role': outerInner
+      });
+      wayObject.node.forEach(function (node) {
+        returnObject.node.push(node);
+      });
+
+      ways.push(wayObject.way[0]);
     });
-    // Return it back to the array
-    return node;
+    return ways;
   });
 
   return returnObject;
