@@ -2,9 +2,8 @@ var geojsonToOsm = require('../index');
 var fs = require('fs');
 
 var files = {
-  'multilinestring': {
-    'json': './test/examples/multilinestring.json',
-    'osm': './test/examples/multilinestring.osm'
+  'nps_multiline': {
+    'json': './test/examples/nps_multiline.json'
   },
   'point': {
     'json': './test/examples/point.json'
@@ -23,10 +22,13 @@ var files = {
   }
 };
 
-var xmlType = 'osmChangeCreate';
-var geometries = JSON.parse(fs.readFileSync(files.multiPolygon.json));
+var xmlType = 'changeset';
+var geometries = JSON.parse(fs.readFileSync(files.nps_multiline.json));
 var changeset = 1;
 osmIdField = undefined;
 versionField = 1;
 
-console.log(JSON.stringify(geojsonToOsm(xmlType, changeset, geometries, osmIdField, versionField), null, 2));
+console.log(geojsonToOsm(xmlType, changeset, geometries, {
+  'changeType': 'create',
+  'prettyPrint': 'true'
+}));
