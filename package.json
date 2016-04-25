@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start": "node index.js",
-    "test": "node ./tests/index.js"
+    "test": "node ./test/index.js"
   },
   "version": "0.0.1"
 }
