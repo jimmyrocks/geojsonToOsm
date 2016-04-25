@@ -13,7 +13,7 @@ module.exports = function (id, changeset, version, geometry, tags, newIdGenerato
   };
 
   // Go through all the coordinates and create nodes for them
-  returnObject.way = geometry.coordinates.map(function (polygonGroup) {
+  geometry.coordinates.forEach(function (polygonGroup) {
     var ways = [];
     polygonGroup.forEach(function (polygonGeometry) {
       // For Polygons with multiple rings, the first must be the exterior ring and any others must be interior rings or holes.
@@ -32,9 +32,8 @@ module.exports = function (id, changeset, version, geometry, tags, newIdGenerato
         returnObject.node.push(node);
       });
 
-      ways.push(wayObject.way[0]);
+      returnObject.way.push(wayObject.way[0]);
     });
-    return ways;
   });
 
   return returnObject;
