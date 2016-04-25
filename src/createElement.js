@@ -12,10 +12,12 @@ var addTags = function (element, tags) {
   var clonedElement = JSON.parse(JSON.stringify(element));
   var newTags = [];
   for (var tag in tags) {
+    if (tags[tag] || tags[tag] === 0 || tags[tag] === false) {
     newTags.push({
       'k': tag,
-      'v': tags[tag]
+      'v': tags[tag].toString()
     });
+    }
   }
   clonedElement.tag = newTags;
   return clonedElement;
