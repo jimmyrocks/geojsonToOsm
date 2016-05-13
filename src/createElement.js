@@ -11,12 +11,18 @@ var createNode = function (element, lat, lon) {
 var addTags = function (element, tags) {
   var clonedElement = JSON.parse(JSON.stringify(element));
   var newTags = [];
+  var blackList = ['_primary_key', '_last_edit'];
   for (var tag in tags) {
-    if (tags[tag] || tags[tag] === 0 || tags[tag] === false) {
-    newTags.push({
-      'k': tag,
-      'v': tags[tag].toString()
-    });
+    if (blackList.indexOf(tag) === -1) {
+      if (tags[tag] || tags[tag] === 0 || tags[tag] === false) {
+        if (tag === 'nps:unit_code') {
+          tags[tag] = tags[tag].toLowerCase();
+        }
+        newTags.push({
+          'k': tag,
+          'v': tags[tag].toString()
+        });
+      }
     }
   }
   clonedElement.tag = newTags;
