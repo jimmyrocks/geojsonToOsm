@@ -2,7 +2,9 @@ var createElement = require('../createElement');
 var lineString = require('./lineString');
 
 module.exports = function (id, changeset, version, geometry, tags, newIdGenerator) {
-  var relation = createElement('relation', id, changeset, version, geometry, tags, newIdGenerator);
+  var relationTags = JSON.parse(JSON.stringify(tags));
+  relationTags.type = relationTags.type || 'multilinestring';
+  var relation = createElement('relation', id, changeset, version, geometry, relationTags, newIdGenerator);
 
   var returnObject = {
     node: [],
@@ -16,12 +18,12 @@ module.exports = function (id, changeset, version, geometry, tags, newIdGenerato
   returnObject.way = geometry.coordinates.map(function (subGeometry) {
     var wayObject = lineString(undefined, changeset, undefined, {
       coordinates: subGeometry
-    }, undefined, newIdGenerator);
+    }, tags, newIdGenerator);
 
     returnObject.relation[0].member.push({
       'type': 'way',
       'ref': wayObject.way[0].id,
-      'role': 'multilinestring'
+      'role': relationTags.type
     });
     wayObject.node.forEach(function (node) {
       returnObject.node.push(node);
