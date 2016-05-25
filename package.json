@@ -1,14 +1,25 @@
 {
-  "contributors": [{
-    "name": "Jim McAndrew",
-    "email": "james_mcandrew@partner.nps.gov"
-  }],
+  "contributors": [
+    {
+      "name": "Jim McAndrew",
+      "email": "james_mcandrew@partner.nps.gov"
+    }
+  ],
   "dependencies": {
+    "geojson-normalize": "0.0.1",
+    "geojson-rewind": "^0.2.0",
     "xmljs_trans_js": "git+https://github.com/jimmyrocks/xmljs_trans_js#master"
   },
   "description": "Converts from GeoJSON to the OpenStreetMap format",
-  "keywords": ["OpenStreetMap", "GeoJSON", "XML"],
-  "author": "Jim McAndrew <james_mcandrew@partner.nps.gov>",
+  "keywords": [
+    "OpenStreetMap",
+    "GeoJSON",
+    "XML"
+  ],
+  "author": {
+    "name": "Jim McAndrew",
+    "email": "james_mcandrew@partner.nps.gov"
+  },
   "license": "Public Domain",
   "main": "index.js",
   "name": "geojsonToOsm",
@@ -20,5 +31,15 @@
     "start": "node index.js",
     "test": "node ./test/index.js"
   },
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "readme": "# geojsontoosm\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/jimmyrocks/geojsonToOsm/issues"
+  },
+  "homepage": "https://github.com/jimmyrocks/geojsonToOsm",
+  "_id": "geojsonToOsm@0.0.1",
+  "_shasum": "25dcce0bd3f03c2acea46d623af3734a275f6bff",
+  "_resolved": "git+https://github.com/jimmyrocks/geojsonToOsm#eef7d2bbc56784390268443667c8d3527f635822",
+  "_from": "geojsonToOsm@git+https://github.com/jimmyrocks/geojsonToOsm"
 }
