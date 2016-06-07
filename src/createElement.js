@@ -11,7 +11,7 @@ var createNode = function (element, lat, lon) {
 var addTags = function (element, tags, options) {
   var clonedElement = JSON.parse(JSON.stringify(element));
   var newTags = [];
-  var blackList = ['_primary_key', '_last_edit'];
+  var blackList = []; //['_primary_key', '_last_edit'];
   if (options && options.blackList) {
     blackList = blackList.concat(options.blackList);
   }
