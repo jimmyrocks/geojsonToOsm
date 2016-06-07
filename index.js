@@ -22,7 +22,7 @@ module.exports = function (xmlType, changeset, geojson, options) {
   geojsonObj = rewind(geojsonObj);
 
   // Convert to a format that I'm calling osmJson
-  var osmJson = readFeatureCollection(geojsonObj, options, changeset, idGenerator);
+  var osmJson = readFeatureCollection(geojsonObj, options, changeset, idGenerator, options);
 
   return js2xml(xmlTypes[xmlType](osmJson, options), {
     'prettyPrint': options.prettyPrint
