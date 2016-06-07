@@ -12,7 +12,7 @@ var addTags = function (element, tags, options) {
   var clonedElement = JSON.parse(JSON.stringify(element));
   var newTags = [];
   var blackList = ['_primary_key', '_last_edit'];
-  if (options.blackList) {
+  if (options && options.blackList) {
     blackList = blackList.concat(options.blackList);
   }
   for (var tag in tags) {
