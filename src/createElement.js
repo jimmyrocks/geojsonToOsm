@@ -23,7 +23,7 @@ var addTags = function (element, tags, options) {
         }
         newTags.push({
           'k': tag,
-          'v': tags[tag].toString()
+          'v': tags[tag] === '*' ? 'yes' : tags[tag].toString()
         });
       }
     }
