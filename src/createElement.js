@@ -8,10 +8,13 @@ var createNode = function (element, lat, lon) {
   return element;
 };
 
-var addTags = function (element, tags) {
+var addTags = function (element, tags, options) {
   var clonedElement = JSON.parse(JSON.stringify(element));
   var newTags = [];
   var blackList = ['_primary_key', '_last_edit'];
+  if (options.blackList) {
+    blackList = blackList.concat(options.blackList);
+  }
   for (var tag in tags) {
     if (blackList.indexOf(tag) === -1) {
       if (tags[tag] || tags[tag] === 0 || tags[tag] === false) {
@@ -29,7 +32,7 @@ var addTags = function (element, tags) {
   return clonedElement;
 };
 
-module.exports = function (type, id, changeset, version, geometry, tags, newIdGenerator) {
+module.exports = function (type, id, changeset, version, geometry, tags, newIdGenerator, options) {
   var newElement = {
     'id': id === undefined ? newIdGenerator(type) : id,
     'version': version === undefined ? '1' : version.toString(),
@@ -45,5 +48,5 @@ module.exports = function (type, id, changeset, version, geometry, tags, newIdGe
     newElement.member = [];
   }
 
-  return addTags(newElement, tags);
+  return addTags(newElement, tags, options);
 };
