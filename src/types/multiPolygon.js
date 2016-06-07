@@ -1,8 +1,8 @@
 var createElement = require('../createElement');
 var lineString = require('./lineString');
 
-module.exports = function (id, changeset, version, geometry, tags, newIdGenerator) {
-  var relation = createElement('relation', id, changeset, version, geometry, tags, newIdGenerator);
+module.exports = function (id, changeset, version, geometry, tags, newIdGenerator, options) {
+  var relation = createElement('relation', id, changeset, version, geometry, tags, newIdGenerator, options);
 
   var returnObject = {
     node: [],
@@ -21,7 +21,7 @@ module.exports = function (id, changeset, version, geometry, tags, newIdGenerato
       var outerInner = ways.length > 0 ? 'inner' : 'outer';
       var wayObject = lineString(undefined, changeset, undefined, {
         coordinates: polygonGeometry
-      }, undefined, newIdGenerator);
+      }, undefined, newIdGenerator, options);
 
       returnObject.relation[0].member.push({
         'type': 'way',
