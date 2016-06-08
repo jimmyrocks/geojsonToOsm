@@ -1,6 +1,6 @@
 var createElement = require('../createElement');
 
-module.exports = function (osmId, foreignKey, osmVersion, changeset, version, geometry, tags, newIdGenerator) {
+module.exports = function (osmId, foreignKey, osmVersion, changeset, geometry, tags, newIdGenerator) {
   var way = createElement('way', osmId, foreignKey, osmVersion, changeset, geometry, tags, newIdGenerator);
 
   var returnObject = {
