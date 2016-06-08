@@ -7,7 +7,6 @@ var xmlTypes = require('./src/requireTypes')('xmlTypes');
 
 module.exports = function (xmlType, changeset, geojson, options) {
   options = options || {};
-  var mappedFields = options.mappedFields || {};
   var idGenerator = new IdGenerator(-1, -1);
   var geojsonObj = {};
   try {
@@ -22,7 +21,7 @@ module.exports = function (xmlType, changeset, geojson, options) {
   geojsonObj = rewind(geojsonObj);
 
   // Convert to a format that I'm calling osmJson
-  var osmJson = readFeatureCollection(geojsonObj, options, changeset, idGenerator, options);
+  var osmJson = readFeatureCollection(geojsonObj, options, changeset, idGenerator);
 
   return js2xml(xmlTypes[xmlType](osmJson, options), {
     'prettyPrint': options.prettyPrint
