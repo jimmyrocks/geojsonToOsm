@@ -2,7 +2,7 @@
 var lineString = require('./lineString');
 var multiPolygon = require('./multiPolygon');
 
-module.exports = function (osmId, foreignKey, osmVersion, changeset, version, geometry, tags, newIdGenerator) {
+module.exports = function (osmId, foreignKey, osmVersion, changeset, geometry, tags, newIdGenerator) {
   // Basically the same thing as a line, but one level deeper
   var newGeometry = {};
   if (geometry.coordinates.length === 1) {
