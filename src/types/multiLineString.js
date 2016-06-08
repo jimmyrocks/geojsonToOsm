@@ -1,10 +1,10 @@
 var createElement = require('../createElement');
 var lineString = require('./lineString');
 
-module.exports = function (id, changeset, version, geometry, tags, newIdGenerator, options) {
+module.exports = function (osmId, foreignKey, osmVersion, changeset, version, geometry, tags, newIdGenerator) {
   var relationTags = JSON.parse(JSON.stringify(tags));
   relationTags.type = relationTags.type || 'multilinestring';
-  var relation = createElement('relation', id, changeset, version, geometry, relationTags, newIdGenerator, options);
+  var relation = createElement('relation', osmId, foreignKey, osmVersion, changeset, geometry, tags, newIdGenerator);
 
   var returnObject = {
     node: [],
@@ -16,9 +16,9 @@ module.exports = function (id, changeset, version, geometry, tags, newIdGenerato
 
   // Go through all the coordinates and create nodes for them
   returnObject.way = geometry.coordinates.map(function (subGeometry) {
-    var wayObject = lineString(undefined, changeset, undefined, {
+    var wayObject = lineString(undefined, undefined, undefined, changeset, {
       coordinates: subGeometry
-    }, tags, newIdGenerator, options);
+    }, tags, newIdGenerator);
 
     returnObject.relation[0].member.push({
       'type': 'way',
