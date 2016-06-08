@@ -8,34 +8,28 @@ var createNode = function (element, lat, lon) {
   return element;
 };
 
-var addTags = function (element, tags, options) {
+var addTags = function (element, tags) {
   var clonedElement = JSON.parse(JSON.stringify(element));
   var newTags = [];
-  var blackList = []; //['_primary_key', '_last_edit'];
-  if (options && options.blackList) {
-    blackList = blackList.concat(options.blackList);
-  }
   for (var tag in tags) {
-    if (blackList.indexOf(tag) === -1) {
-      if (tags[tag] || tags[tag] === 0 || tags[tag] === false) {
-        if (tag === 'nps:unit_code') {
-          tags[tag] = tags[tag].toLowerCase();
-        }
-        newTags.push({
-          'k': tag,
-          'v': tags[tag] === '*' ? 'yes' : tags[tag].toString()
-        });
+    if (tags[tag] || tags[tag] === 0 || tags[tag] === false) {
+      if (tag === 'nps:unit_code') {
+        tags[tag] = tags[tag].toLowerCase();
       }
+      newTags.push({
+        'k': tag,
+        'v': tags[tag] === '*' ? 'yes' : tags[tag].toString()
+      });
     }
   }
   clonedElement.tag = newTags;
   return clonedElement;
 };
-
-module.exports = function (type, id, changeset, version, geometry, tags, newIdGenerator, options) {
+module.exports = function (type, osmId, foreignKey, osmVersion, changeset, geometry, tags, newIdGenerator) {
   var newElement = {
-    'id': id === undefined ? newIdGenerator(type) : id,
-    'version': version === undefined ? '1' : version.toString(),
+    'id': osmId === undefined ? newIdGenerator(type) : osmId,
+    'version': osmVersion === undefined ? '1' : osmVersion.toString(),
+    'foreignKey': foreignKey,
     'changeset': changeset
   };
 
@@ -48,5 +42,5 @@ module.exports = function (type, id, changeset, version, geometry, tags, newIdGe
     newElement.member = [];
   }
 
-  return addTags(newElement, tags, options);
+  return addTags(newElement, tags);
 };
