@@ -1,7 +1,7 @@
 var createElement = require('../createElement');
 
-module.exports = function (id, changeset, version, geometry, tags, newIdGenerator, options) {
-  var way = createElement('way', id, changeset, version, geometry, tags, newIdGenerator, options);
+module.exports = function (osmId, foreignKey, osmVersion, changeset, version, geometry, tags, newIdGenerator) {
+  var way = createElement('way', osmId, foreignKey, osmVersion, changeset, geometry, tags, newIdGenerator);
 
   var returnObject = {
     node: [],
@@ -14,9 +14,9 @@ module.exports = function (id, changeset, version, geometry, tags, newIdGenerato
   returnObject.node = geometry.coordinates.map(function (coords) {
     // Create the node
     // TODO: When updating, these nodes may need to be pulled from the interface (think about this for later!)
-    var node = createElement('node', undefined, changeset, undefined, {
+    var node = createElement('node', undefined, undefined, undefined, changeset, {
       'coordinates': coords
-    }, undefined, newIdGenerator, options);
+    }, undefined, newIdGenerator);
     // Add a reference to it
     returnObject.way[0].nd.push({
       'ref': node.id
