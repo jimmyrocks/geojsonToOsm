@@ -18,7 +18,7 @@ var addTags = function (element, tags) {
       }
       newTags.push({
         'k': tag,
-        'v': tags[tag] === '*' ? 'yes' : tags[tag].toString()
+        'v': tags[tag]
       });
     }
   }
