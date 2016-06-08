@@ -1,7 +1,7 @@
 var createElement = require('../createElement');
 var lineString = require('./lineString');
 
-module.exports = function (osmId, foreignKey, osmVersion, changeset, version, geometry, tags, newIdGenerator) {
+module.exports = function (osmId, foreignKey, osmVersion, changeset, geometry, tags, newIdGenerator) {
   var relationTags = JSON.parse(JSON.stringify(tags));
   relationTags.type = relationTags.type || 'multilinestring';
   var relation = createElement('relation', osmId, foreignKey, osmVersion, changeset, geometry, tags, newIdGenerator);
