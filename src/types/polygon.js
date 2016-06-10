@@ -11,7 +11,7 @@ module.exports = function (osmId, foreignKey, osmVersion, changeset, geometry, t
     return lineString(osmId, foreignKey, osmVersion, changeset, newGeometry, tags, newIdGenerator);
   } else {
     // Otherwise let's treat it like a multiPolygon so we can keep that logic in one place
-    newIdGenerator.coordinates = [geometry.coordinates];
+    newGeometry.coordinates = [geometry.coordinates];
     return multiPolygon(osmId, foreignKey, osmVersion, changeset, newGeometry, tags, newIdGenerator);
   }
 };
