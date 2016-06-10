@@ -29,6 +29,6 @@ osmIdField = undefined;
 versionField = 1;
 
 console.log(geojsonToOsm(xmlType, changeset, geometries, {
-  'changeType': 'create',
+  'changeType': 'delete',
   'prettyPrint': 'true'
 }));
