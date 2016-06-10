@@ -7,17 +7,18 @@ module.exports = function (osmJson, options) {
     'delete': {}
   };
 
-  // Add the JSON
-  for (var key in osmJson) {
-    returnObj[options.changeType][key] = osmJson[key];
-  }
-
   // Extra params for remove
   if (options.changeType === 'delete') {
     returnObj[options.changeType] = {
       'if-unused': 'true'
     };
   }
+
+  // Add the JSON
+  for (var key in osmJson) {
+    returnObj[options.changeType][key] = osmJson[key];
+  }
+
   return {
     'osmChange': returnObj
   };
