@@ -8,7 +8,7 @@ var readFeatureCollection = module.exports = function (featureCollection, option
   var osmFeatures = [];
   geojsonFeatures.forEach(function (feature) {
     var osmId = feature[osmIdField];
-    var osmVersion = feature[versionField]
+    var osmVersion = feature[versionField];
     var foreignKey = feature[foreignKeyField];
     if (feature.type === 'Feature') {
       var geometryType = feature.geometry && feature.geometry.type && osmTypes[feature.geometry.type.toLowerCase()];
@@ -24,10 +24,10 @@ var readFeatureCollection = module.exports = function (featureCollection, option
     }
   });
   var returnObj = {};
-  osmFeatures.forEach(function(feature) {
+  osmFeatures.forEach(function (feature) {
     for (var elementType in feature) {
       returnObj[elementType] = returnObj[elementType] || [];
-      feature[elementType].forEach(function(element) {
+      feature[elementType].forEach(function (element) {
         returnObj[elementType].push(element);
       });
     }
