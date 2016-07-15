@@ -2,6 +2,7 @@ var createElement = require('../createElement');
 var lineString = require('./lineString');
 
 module.exports = function (osmId, foreignKey, osmVersion, changeset, geometry, tags, newIdGenerator) {
+  tags.type = 'multipolygon';
   var relation = createElement('relation', osmId, foreignKey, osmVersion, changeset, geometry, tags, newIdGenerator);
 
   var returnObject = {
