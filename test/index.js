@@ -23,7 +23,7 @@ var files = {
 };
 
 var xmlType = 'changeset';
-var geometries = JSON.parse(fs.readFileSync(files.nps_multiline.json));
+var geometries = JSON.parse(fs.readFileSync(files.multiPolygon.json));
 var changeset = 1;
 osmIdField = undefined;
 versionField = 1;
