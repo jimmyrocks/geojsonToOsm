@@ -14,11 +14,10 @@ module.exports = function (osmId, foreignKey, osmVersion, changeset, geometry, t
 
   // Go through all the coordinates and create nodes for them
   geometry.coordinates.forEach(function (polygonGroup) {
-    var ways = [];
     polygonGroup.forEach(function (polygonGeometry) {
       // For Polygons with multiple rings, the first must be the exterior ring and any others must be interior rings or holes.
       // http://geojson.org/geojson-spec.html#polygon
-      var outerInner = ways.length > 0 ? 'inner' : 'outer';
+      var outerInner = returnObject.relation[0].member.length > 0 ? 'inner' : 'outer';
       var wayObject = lineString(undefined, undefined, undefined, changeset, {
         coordinates: polygonGeometry
       }, undefined, newIdGenerator);
