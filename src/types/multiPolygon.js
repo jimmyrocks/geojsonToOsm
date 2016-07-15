@@ -1,3 +1,4 @@
+var closePolyline = require('../closePolyline');
 var createElement = require('../createElement');
 var lineString = require('./lineString');
 
@@ -19,9 +20,9 @@ module.exports = function (osmId, foreignKey, osmVersion, changeset, geometry, t
       // For Polygons with multiple rings, the first must be the exterior ring and any others must be interior rings or holes.
       // http://geojson.org/geojson-spec.html#polygon
       var outerInner = returnObject.relation[0].member.length > 0 ? 'inner' : 'outer';
-      var wayObject = lineString(undefined, undefined, undefined, changeset, {
+      var wayObject = closePolyline(lineString(undefined, undefined, undefined, changeset, {
         coordinates: polygonGeometry
-      }, undefined, newIdGenerator);
+      }, undefined, newIdGenerator));
 
       returnObject.relation[0].member.push({
         'type': 'way',
