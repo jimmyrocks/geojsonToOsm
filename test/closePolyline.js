@@ -1,270 +1,369 @@
-var example = {
-  'node': [{
-    'id': -1,
-    'version': '1',
-    'changeset': '-1',
-    'lat': 63.7303839,
-    'lon': -148.8969467,
-    'tag': []
-  }, {
-    'id': -2,
-    'version': '1',
-    'changeset': '-1',
-    'lat': 63.7303894,
-    'lon': -148.8969506,
-    'tag': []
-  }, {
-    'id': -3,
-    'version': '1',
-    'changeset': '-1',
-    'lat': 63.730385,
-    'lon': -148.89698,
-    'tag': []
-  }, {
-    'id': -4,
-    'version': '1',
-    'changeset': '-1',
-    'lat': 63.7303794,
-    'lon': -148.8969756,
-    'tag': []
-  }, {
-    'id': -5,
-    'version': '1',
-    'changeset': '-1',
-    'lat': 63.7303694,
-    'lon': -148.8970389,
-    'tag': []
-  }, {
-    'id': -6,
-    'version': '1',
-    'changeset': '-1',
-    'lat': 63.7303228,
-    'lon': -148.8970022,
-    'tag': []
-  }, {
-    'id': -7,
-    'version': '1',
-    'changeset': '-1',
-    'lat': 63.73033,
-    'lon': -148.8969567,
-    'tag': []
-  }, {
-    'id': -8,
-    'version': '1',
-    'changeset': '-1',
-    'lat': 63.7303172,
-    'lon': -148.8969461,
-    'tag': []
-  }, {
-    'id': -9,
-    'version': '1',
-    'changeset': '-1',
-    'lat': 63.7303272,
-    'lon': -148.8968828,
-    'tag': []
-  }, {
-    'id': -10,
-    'version': '1',
-    'changeset': '-1',
-    'lat': 63.73034,
-    'lon': -148.8968928,
-    'tag': []
-  }, {
-    'id': -11,
-    'version': '1',
-    'changeset': '-1',
-    'lat': 63.7303466,
-    'lon': -148.8968467,
-    'tag': []
-  }, {
-    'id': -12,
-    'version': '1',
-    'changeset': '-1',
-    'lat': 63.7303933,
-    'lon': -148.8968833,
-    'tag': []
-  }, {
-    'id': -13,
-    'version': '1',
-    'changeset': '-1',
-    'lat': 63.7303839,
-    'lon': -148.8969467,
-    'tag': []
-  }],
-  'way': [{
-    'id': -1,
-    'version': '1',
-    'foreignKey': '{00BB9105-39A9-457E-A3D5-38C11894B1CD}',
-    'changeset': '-1',
-    'nd': [{
-      'ref': -1
+var closePolyline = require('../src/closePolyline');
+
+var examples = [{
+  'test': {
+    'node': [{
+      'id': -1,
+      'version': '1',
+      'changeset': '-1',
+      'lat': 63.7303839,
+      'lon': -148.8969467,
+      'tag': []
     }, {
-      'ref': -2
+      'id': -2,
+      'version': '1',
+      'changeset': '-1',
+      'lat': 63.7303894,
+      'lon': -148.8969506,
+      'tag': []
     }, {
-      'ref': -3
+      'id': -3,
+      'version': '1',
+      'changeset': '-1',
+      'lat': 63.730385,
+      'lon': -148.89698,
+      'tag': []
     }, {
-      'ref': -4
+      'id': -4,
+      'version': '1',
+      'changeset': '-1',
+      'lat': 63.7303794,
+      'lon': -148.8969756,
+      'tag': []
     }, {
-      'ref': -5
+      'id': -5,
+      'version': '1',
+      'changeset': '-1',
+      'lat': 63.7303694,
+      'lon': -148.8970389,
+      'tag': []
     }, {
-      'ref': -6
+      'id': -6,
+      'version': '1',
+      'changeset': '-1',
+      'lat': 63.7303228,
+      'lon': -148.8970022,
+      'tag': []
     }, {
-      'ref': -7
+      'id': -7,
+      'version': '1',
+      'changeset': '-1',
+      'lat': 63.73033,
+      'lon': -148.8969567,
+      'tag': []
     }, {
-      'ref': -8
+      'id': -8,
+      'version': '1',
+      'changeset': '-1',
+      'lat': 63.7303172,
+      'lon': -148.8969461,
+      'tag': []
     }, {
-      'ref': -9
+      'id': -9,
+      'version': '1',
+      'changeset': '-1',
+      'lat': 63.7303272,
+      'lon': -148.8968828,
+      'tag': []
     }, {
-      'ref': -10
+      'id': -10,
+      'version': '1',
+      'changeset': '-1',
+      'lat': 63.73034,
+      'lon': -148.8968928,
+      'tag': []
     }, {
-      'ref': -11
+      'id': -11,
+      'version': '1',
+      'changeset': '-1',
+      'lat': 63.7303466,
+      'lon': -148.8968467,
+      'tag': []
     }, {
-      'ref': -12
-    }, {
-      'ref': -13
+      'id': -12,
+      'version': '1',
+      'changeset': '-1',
+      'lat': 63.7303933,
+      'lon': -148.8968833,
+      'tag': []
     }],
-    'tag': [{
-      'k': 'nps:source_system_key_value',
-      'v': 600
-    }, {
-      'k': 'nps:location_id',
-      'v': 18931
-    }, {
-      'k': 'building',
-      'v': 'yes'
+    'way': [{
+      'id': -1,
+      'version': '1',
+      'foreignKey': '{00BB9105-39A9-457E-A3D5-38C11894B1CD}',
+      'changeset': '-1',
+      'nd': [{
+        'ref': -1
+      }, {
+        'ref': -2
+      }, {
+        'ref': -3
+      }, {
+        'ref': -4
+      }, {
+        'ref': -5
+      }, {
+        'ref': -6
+      }, {
+        'ref': -7
+      }, {
+        'ref': -8
+      }, {
+        'ref': -9
+      }, {
+        'ref': -10
+      }, {
+        'ref': -11
+      }, {
+        'ref': -12
+      }],
+      'tag': [{
+        'k': 'nps:source_system_key_value',
+        'v': 600
+      }, {
+        'k': 'nps:location_id',
+        'v': 18931
+      }, {
+        'k': 'building',
+        'v': 'yes'
+      }]
     }]
-  }]
-};
-
-var result = {
-  'node': [{
-    'id': -1,
-    'version': '1',
-    'changeset': '-1',
-    'lat': 63.7303839,
-    'lon': -148.8969467,
-    'tag': []
-  }, {
-    'id': -2,
-    'version': '1',
-    'changeset': '-1',
-    'lat': 63.7303894,
-    'lon': -148.8969506,
-    'tag': []
-  }, {
-    'id': -3,
-    'version': '1',
-    'changeset': '-1',
-    'lat': 63.730385,
-    'lon': -148.89698,
-    'tag': []
-  }, {
-    'id': -4,
-    'version': '1',
-    'changeset': '-1',
-    'lat': 63.7303794,
-    'lon': -148.8969756,
-    'tag': []
-  }, {
-    'id': -5,
-    'version': '1',
-    'changeset': '-1',
-    'lat': 63.7303694,
-    'lon': -148.8970389,
-    'tag': []
-  }, {
-    'id': -6,
-    'version': '1',
-    'changeset': '-1',
-    'lat': 63.7303228,
-    'lon': -148.8970022,
-    'tag': []
-  }, {
-    'id': -7,
-    'version': '1',
-    'changeset': '-1',
-    'lat': 63.73033,
-    'lon': -148.8969567,
-    'tag': []
-  }, {
-    'id': -8,
-    'version': '1',
-    'changeset': '-1',
-    'lat': 63.7303172,
-    'lon': -148.8969461,
-    'tag': []
-  }, {
-    'id': -9,
-    'version': '1',
-    'changeset': '-1',
-    'lat': 63.7303272,
-    'lon': -148.8968828,
-    'tag': []
-  }, {
-    'id': -10,
-    'version': '1',
-    'changeset': '-1',
-    'lat': 63.73034,
-    'lon': -148.8968928,
-    'tag': []
-  }, {
-    'id': -11,
-    'version': '1',
-    'changeset': '-1',
-    'lat': 63.7303466,
-    'lon': -148.8968467,
-    'tag': []
-  }, {
-    'id': -12,
-    'version': '1',
-    'changeset': '-1',
-    'lat': 63.7303933,
-    'lon': -148.8968833,
-    'tag': []
-  }],
-  'way': [{
-    'id': -1,
-    'version': '1',
-    'foreignKey': '{00BB9105-39A9-457E-A3D5-38C11894B1CD}',
-    'changeset': '-1',
-    'nd': [{
-      'ref': -1
+  },
+  'result': {
+    'node': [{
+      'id': -1,
+      'version': '1',
+      'changeset': '-1',
+      'lat': 63.7303839,
+      'lon': -148.8969467,
+      'tag': []
     }, {
-      'ref': -2
+      'id': -2,
+      'version': '1',
+      'changeset': '-1',
+      'lat': 63.7303894,
+      'lon': -148.8969506,
+      'tag': []
     }, {
-      'ref': -3
+      'id': -3,
+      'version': '1',
+      'changeset': '-1',
+      'lat': 63.730385,
+      'lon': -148.89698,
+      'tag': []
     }, {
-      'ref': -4
+      'id': -4,
+      'version': '1',
+      'changeset': '-1',
+      'lat': 63.7303794,
+      'lon': -148.8969756,
+      'tag': []
     }, {
-      'ref': -5
+      'id': -5,
+      'version': '1',
+      'changeset': '-1',
+      'lat': 63.7303694,
+      'lon': -148.8970389,
+      'tag': []
     }, {
-      'ref': -6
+      'id': -6,
+      'version': '1',
+      'changeset': '-1',
+      'lat': 63.7303228,
+      'lon': -148.8970022,
+      'tag': []
     }, {
-      'ref': -7
+      'id': -7,
+      'version': '1',
+      'changeset': '-1',
+      'lat': 63.73033,
+      'lon': -148.8969567,
+      'tag': []
     }, {
-      'ref': -8
+      'id': -8,
+      'version': '1',
+      'changeset': '-1',
+      'lat': 63.7303172,
+      'lon': -148.8969461,
+      'tag': []
     }, {
-      'ref': -9
+      'id': -9,
+      'version': '1',
+      'changeset': '-1',
+      'lat': 63.7303272,
+      'lon': -148.8968828,
+      'tag': []
     }, {
-      'ref': -10
+      'id': -10,
+      'version': '1',
+      'changeset': '-1',
+      'lat': 63.73034,
+      'lon': -148.8968928,
+      'tag': []
     }, {
-      'ref': -11
+      'id': -11,
+      'version': '1',
+      'changeset': '-1',
+      'lat': 63.7303466,
+      'lon': -148.8968467,
+      'tag': []
     }, {
-      'ref': -12
-    }, {
-      'ref': -1
+      'id': -12,
+      'version': '1',
+      'changeset': '-1',
+      'lat': 63.7303933,
+      'lon': -148.8968833,
+      'tag': []
     }],
-    'tag': [{
-      'k': 'nps:source_system_key_value',
-      'v': 600
-    }, {
-      'k': 'nps:location_id',
-      'v': 18931
-    }, {
-      'k': 'building',
-      'v': 'yes'
+    'way': [{
+      'id': -1,
+      'version': '1',
+      'foreignKey': '{00BB9105-39A9-457E-A3D5-38C11894B1CD}',
+      'changeset': '-1',
+      'nd': [{
+        'ref': -1
+      }, {
+        'ref': -2
+      }, {
+        'ref': -3
+      }, {
+        'ref': -4
+      }, {
+        'ref': -5
+      }, {
+        'ref': -6
+      }, {
+        'ref': -7
+      }, {
+        'ref': -8
+      }, {
+        'ref': -9
+      }, {
+        'ref': -10
+      }, {
+        'ref': -11
+      }, {
+        'ref': -12
+      }, {
+        'ref': -1
+      }],
+      'tag': [{
+        'k': 'nps:source_system_key_value',
+        'v': 600
+      }, {
+        'k': 'nps:location_id',
+        'v': 18931
+      }, {
+        'k': 'building',
+        'v': 'yes'
+      }]
     }]
-  }]
-};
+  }
+}, {
+  'test': {
+    'node': [{
+      'id': -1,
+      'version': '1',
+      'changeset': '-1',
+      'lat': 63.7303839,
+      'lon': -148.8969467,
+      'tag': []
+    }, {
+      'id': -2,
+      'version': '1',
+      'changeset': '-1',
+      'lat': 63.7303894,
+      'lon': -148.8969506,
+      'tag': []
+    }, {
+      'id': -3,
+      'version': '1',
+      'changeset': '-1',
+      'lat': 63.730385,
+      'lon': -148.89698,
+      'tag': []
+    }],
+    'way': [{
+      'id': -1,
+      'version': '1',
+      'foreignKey': '{00BB9105-39A9-457E-A3D5-38C11894B1CD}',
+      'changeset': '-1',
+      'nd': [{
+        'ref': -1
+      }, {
+        'ref': -2
+      }, {
+        'ref': -3
+      }],
+      'tag': [{
+        'k': 'nps:source_system_key_value',
+        'v': 600
+      }, {
+        'k': 'nps:location_id',
+        'v': 18931
+      }, {
+        'k': 'building',
+        'v': 'yes'
+      }]
+    }]
+  },
+  'result': {
+    'node': [{
+      'id': -1,
+      'version': '1',
+      'changeset': '-1',
+      'lat': 63.7303839,
+      'lon': -148.8969467,
+      'tag': []
+    }, {
+      'id': -2,
+      'version': '1',
+      'changeset': '-1',
+      'lat': 63.7303894,
+      'lon': -148.8969506,
+      'tag': []
+    }, {
+      'id': -3,
+      'version': '1',
+      'changeset': '-1',
+      'lat': 63.730385,
+      'lon': -148.89698,
+      'tag': []
+    }],
+    'way': [{
+      'id': -1,
+      'version': '1',
+      'foreignKey': '{00BB9105-39A9-457E-A3D5-38C11894B1CD}',
+      'changeset': '-1',
+      'nd': [{
+        'ref': -1
+      }, {
+        'ref': -2
+      }, {
+        'ref': -3
+      }, {
+        'ref': -1
+      }],
+      'tag': [{
+        'k': 'nps:source_system_key_value',
+        'v': 600
+      }, {
+        'k': 'nps:location_id',
+        'v': 18931
+      }, {
+        'k': 'building',
+        'v': 'yes'
+      }]
+    }]
+  }
+}];
 
-
+module.exports = examples.map(function (example, i) {
+  return {
+    'name': 'Test polygon: ' + (i + 1),
+    'task': closePolyline,
+    'params': [example.test],
+    'opertor': 'deepEqual',
+    'expected': example.result
+  };
+});
