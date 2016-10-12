@@ -9,6 +9,9 @@ var files = {
   'point': {
     'json': 'point.json'
   },
+  'pointNull': {
+    'json': 'point_null.json'
+  },
   'line': {
     'json': 'line.json'
   },
