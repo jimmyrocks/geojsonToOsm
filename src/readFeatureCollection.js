@@ -15,7 +15,10 @@ var readFeatureCollection = module.exports = function (featureCollection, option
       if (geometryType) {
         osmFeatures.push(geometryType(osmId, foreignKey, osmVersion, changeset, feature.geometry, feature.properties, idGenerator));
       } else {
-        throw new Error('Invalid Geometry Type: ' + feature.geometry.type);
+        // Allow null geometries in GeoJSON (just ignore them when converting to prevent a null island)
+        if (feature.geometry !== null) {
+          throw new Error('Invalid Geometry Type: ' + (feature.geometry && feature.geometry.type));
+        }
       }
     } else if (feature.type === 'FeatureCollection') {
       osmFeatures.concat(readFeatureCollection(feature, options, changeset, idGenerator));
