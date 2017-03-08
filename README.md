@@ -8,6 +8,7 @@ geojsonToOsm(xmlType, changeset, geojson, options)
 ###xmlType:
 * josm: Used for loading the output into JOSM. [More info](https://wiki.openstreetmap.org/wiki/JOSM_file_format)
 * changeset: Used to directly push the data into the API. [More Info](https://wiki.openstreetmap.org/wiki/OsmChange)
+
 New types can be added here: https://github.com/jimmyrocks/geojsonToOsm/tree/master/src/xmlTypes
   
 ###changeset:
